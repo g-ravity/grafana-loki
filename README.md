@@ -10,10 +10,8 @@ Self Managed Grafana service with Loki plugin for log observability
   GRAFANA_NAME=
   GRAFANA_USER=
   GRAFANA_PASSWORD=
-  LOG_PATH_VOLUME=
 ```
 
-- **LOG_PATH_VOLUME** is the folder where your log files are stored. Promtail will stream logs to Loki from this folder.
 - Start the docker container using the following command below:
 
   ```

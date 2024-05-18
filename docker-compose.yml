@@ -10,16 +10,8 @@ services:
       - "3100:3100"
     command: -config.file=/etc/loki/local-config.yaml
     volumes:
+      - ./loki-data:/loki
       - ./loki-config:/etc/loki
-    networks:
-      - loki
-
-  promtail:
-    image: grafana/promtail:2.9.0
-    command: -config.file=/etc/promtail/config.yml
-    volumes:
-      - ./promtail-config:/etc/promtail
-      - ${LOG_PATH_VOLUME}:/var/log
     networks:
       - loki
 
@@ -54,3 +46,6 @@ services:
       - "3000:3000"
     networks:
       - loki
+
+volumes:
+  loki-data:

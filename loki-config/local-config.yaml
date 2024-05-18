@@ -10,6 +10,7 @@ common:
       chunks_directory: /loki/chunks
       rules_directory: /loki/rules
   replication_factor: 1
+  final_sleep: 0s
   ring:
     kvstore:
       store: inmemory
@@ -17,12 +18,18 @@ common:
 schema_config:
   configs:
     - from: 2020-10-24
-      store: boltdb-shipper
+      store: boltdb
       object_store: filesystem
       schema: v11
       index:
         prefix: index_
-        period: 24h
+        period: 168h
+
+storage_config:
+  boltdb:
+    active_index_directory: /loki/boltdb-idx
+  filesystem:
+    directory: /loki/chunks
 
 ruler:
   alertmanager_url: http://localhost:9093
